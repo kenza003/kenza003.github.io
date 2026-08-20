@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kenza NAIT ATMANE — Conceptrice Informatique | Cloud &amp; Web</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+  :root{
+    --bg:#FAFAF7;
+    --ink:#14202C;
+    --slate:#2A4159;
+    --slate-soft:#3C5670;
+    --amber:#E8A33D;
+    --teal:#3FA796;
+    --line:#DCD9CF;
+    --paper:#FFFFFF;
+    --muted:#5C6B78;
+    --display: 'Space Grotesk', sans-serif;
+    --body: 'IBM Plex Sans', sans-serif;
+    --mono: 'IBM Plex Mono', monospace;
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--body);
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;}
+  img{max-width:100%;display:block;}
+
+  .wrap{max-width:1080px; margin:0 auto; padding:0 28px;}
+
+  /* ---------- NAV ---------- */
+  header.nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(250,250,247,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 28px; max-width:1080px; margin:0 auto;
+  }
+  .nav-brand{
+    font-family:var(--mono); font-size:13px; letter-spacing:0.06em;
+    color:var(--slate); display:flex; align-items:center; gap:8px;
+  }
+  .dot-live{
+    width:7px; height:7px; border-radius:50%; background:var(--teal);
+    box-shadow:0 0 0 3px rgba(63,167,150,0.18);
+  }
+  @media (prefers-reduced-motion:no-preference){
+    .dot-live{ animation:pulse 2.4s ease-in-out infinite; }
+  }
+  @keyframes pulse{
+    0%,100%{ box-shadow:0 0 0 3px rgba(63,167,150,0.18); }
+    50%{ box-shadow:0 0 0 6px rgba(63,167,150,0.06); }
+  }
+  nav.links{display:flex; gap:22px; font-size:14px;}
+  nav.links a{
+    text-decoration:none; color:var(--muted); font-weight:500;
+    border-bottom:2px solid transparent; padding-bottom:2px;
+    transition:color .15s, border-color .15s;
+  }
+  nav.links a:hover, nav.links a:focus-visible{ color:var(--ink); border-color:var(--amber); }
+  .nav-cv{
+    font-family:var(--mono); font-size:12.5px; text-decoration:none;
+    border:1px solid var(--ink); padding:7px 14px; border-radius:3px;
+    color:var(--ink); white-space:nowrap;
+  }
+  .nav-cv:hover{ background:var(--ink); color:var(--paper); }
+
+  @media (max-width:760px){
+    nav.links{ display:none; }
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{ padding:64px 0 40px; }
+  .status-panel{
+    background:var(--ink); color:var(--bg);
+    border-radius:10px; padding:40px 36px 32px;
+    position:relative; overflow:hidden;
+  }
+  .status-panel::before{
+    content:""; position:absolute; inset:0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
+    background-size:34px 34px;
+    pointer-events:none;
+  }
+  .status-row{
+    display:flex; align-items:center; gap:10px; font-family:var(--mono);
+    font-size:12px; color:var(--teal); margin-bottom:22px; position:relative;
+  }
+  .status-row .sep{ color:var(--slate-soft); }
+  .hero-name{
+    font-family:var(--display); font-weight:700;
+    font-size:clamp(32px,5vw,52px); line-height:1.05; position:relative;
+  }
+  .hero-role{
+    font-family:var(--display); font-weight:500; color:var(--amber);
+    font-size:clamp(16px,2.2vw,20px); margin-top:10px; position:relative;
+  }
+  .hero-summary{
+    max-width:620px; margin-top:20px; color:#C7CDD3; font-size:15px; position:relative;
+  }
+  .hero-meta{
+    display:flex; flex-wrap:wrap; gap:16px; margin-top:26px;
+    font-family:var(--mono); font-size:12.5px; color:#9FB0BD; position:relative;
+  }
+  .hero-meta a{ text-decoration:none; color:#9FB0BD; }
+  .hero-meta a:hover{ color:var(--teal); }
+
+  /* node graph */
+  .node-graph{
+    margin-top:34px; position:relative;
+    display:flex; flex-wrap:wrap; gap:10px;
+  }
+  .node{
+    font-family:var(--mono); font-size:12px; color:var(--bg);
+    border:1px solid rgba(255,255,255,0.16); border-radius:20px;
+    padding:7px 14px 7px 10px; display:flex; align-items:center; gap:7px;
+    background:rgba(255,255,255,0.03);
+  }
+  .node .status-dot{ width:6px; height:6px; border-radius:50%; }
+  .node[data-lvl="fort"] .status-dot{ background:var(--teal); }
+  .node[data-lvl="dev"] .status-dot{ background:var(--amber); }
+
+  /* ---------- SECTION HEADINGS ---------- */
+  .section{ padding:56px 0; border-top:1px solid var(--line); }
+  .section-head{
+    display:flex; align-items:baseline; gap:14px; margin-bottom:8px;
+  }
+  .section-tag{
+    font-family:var(--mono); font-size:12px; color:var(--muted);
+    border:1px solid var(--line); padding:3px 8px; border-radius:3px;
+  }
+  .section h2{
+    font-family:var(--display); font-weight:700; font-size:26px;
+  }
+  .section-sub{ color:var(--muted); font-size:14.5px; margin-bottom:30px; max-width:600px; }
+
+  /* ---------- DOMAIN GRID ---------- */
+  .domain-grid{
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:18px;
+  }
+  .card{
+    background:var(--paper); border:1px solid var(--line); border-radius:8px;
+    padding:22px 22px 20px;
+  }
+  .card-head{ display:flex; align-items:center; justify-content:space-between; margin-bottom:10px;}
+  .card-head h3{ font-family:var(--display); font-size:17px; font-weight:600; }
+  .badge{
+    font-family:var(--mono); font-size:10.5px; text-transform:uppercase; letter-spacing:.04em;
+    padding:3px 8px; border-radius:20px; white-space:nowrap;
+  }
+  .badge.actif{ background:rgba(63,167,150,0.14); color:#256F63; }
+  .badge.encours{ background:rgba(232,163,61,0.16); color:#96650E; }
+
+  .card p{ color:var(--muted); font-size:14px; margin-bottom:14px; }
+  .stack{ display:flex; flex-wrap:wrap; gap:6px; margin-bottom:14px;}
+  .chip{
+    font-family:var(--mono); font-size:11px; background:#F0EEE7;
+    border:1px solid var(--line); padding:3px 8px; border-radius:3px; color:var(--slate);
+  }
+  .card-link{
+    font-family:var(--mono); font-size:12.5px; text-decoration:none;
+    color:var(--slate); border-bottom:1px solid var(--slate-soft);
+  }
+  .card-link:hover{ color:var(--amber); border-color:var(--amber); }
+
+  /* ---------- COMPETENCES ---------- */
+  .skill-groups{ display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:22px; }
+  .skill-group h4{
+    font-family:var(--mono); font-size:12px; text-transform:uppercase; letter-spacing:.05em;
+    color:var(--muted); margin-bottom:10px;
+  }
+  .skill-chips{ display:flex; flex-wrap:wrap; gap:6px; }
+
+  /* ---------- PARCOURS ---------- */
+  .track-list{ border-left:2px solid var(--line); padding-left:22px; display:flex; flex-direction:column; gap:18px; }
+  .track-item{ position:relative; }
+  .track-item::before{
+    content:""; position:absolute; left:-28px; top:5px;
+    width:9px; height:9px; border-radius:50%; background:var(--amber);
+    border:2px solid var(--bg); box-shadow:0 0 0 2px var(--amber);
+  }
+  .track-item h4{ font-family:var(--display); font-size:15.5px; font-weight:600; }
+  .track-item .meta{ font-family:var(--mono); font-size:12px; color:var(--muted); margin-top:2px;}
+
+  /* ---------- FOOTER ---------- */
+  footer{ border-top:1px solid var(--line); padding:40px 0 60px; }
+  .footer-inner{ display:flex; flex-wrap:wrap; justify-content:space-between; gap:20px; align-items:center; }
+  .footer-inner h3{ font-family:var(--display); font-size:20px; margin-bottom:6px;}
+  .footer-inner p{ color:var(--muted); font-size:14px; }
+  .footer-links{ display:flex; gap:18px; font-family:var(--mono); font-size:13px; }
+  .footer-links a{ text-decoration:none; color:var(--slate); border-bottom:1px solid var(--line); }
+  .footer-links a:hover{ color:var(--amber); border-color:var(--amber); }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="nav-brand"><span class="dot-live"></span> kenza003 // portfolio</div>
+    <nav class="links">
+      <a href="#cloud-devops">Cloud &amp; DevOps</a>
+      <a href="#web">Web</a>
+      <a href="#iot">IoT &amp; Embarqué</a>
+      <a href="#cyber">Cybersécurité</a>
+      <a href="#itsm">ITSM</a>
+      <a href="#parcours">Parcours</a>
+    </nav>
+    <a class="nav-cv" href="mailto:naitatmane.kenza2003@gmail.com">Contact</a>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="status-panel">
+      <div class="status-row">
+        SYSTEM // KENZA-NAIT-ATMANE <span class="sep">·</span> STATUS: OPEN TO OPPORTUNITIES <span class="sep">·</span> LOC: MARSEILLE, FR
+      </div>
+      <h1 class="hero-name">Kenza NAIT ATMANE</h1>
+      <p class="hero-role">Développeuse &amp; Conceptrice Informatique — Cloud &amp; Web</p>
+      <p class="hero-summary">
+        Master 2 Réseaux &amp; Télécommunications (parcours IoT). Je conçois et déploie des solutions
+        de bout en bout — infrastructures Cloud, automatisation DevOps, applications web, réseaux et
+        cybersécurité — avec une approche de terrain acquise en environnement client (ITSM/ITIL).
+      </p>
+      <div class="hero-meta">
+        <a href="mailto:naitatmane.kenza2003@gmail.com">naitatmane.kenza2003@gmail.com</a>
+        <span>+33 6 38 05 96 50</span>
+        <a href="https://github.com/kenza003" target="_blank" rel="noopener">github.com/kenza003</a>
+        <span>Permis B</span>
+      </div>
+      <div class="node-graph">
+        <div class="node" data-lvl="dev"><span class="status-dot"></span>cloud / aws · docker · k8s</div>
+        <div class="node" data-lvl="fort"><span class="status-dot"></span>web · php · js · full-stack</div>
+        <div class="node" data-lvl="dev"><span class="status-dot"></span>iot · zigbee · c/c++</div>
+        <div class="node" data-lvl="fort"><span class="status-dot"></span>cybersécurité · pentest</div>
+        <div class="node" data-lvl="fort"><span class="status-dot"></span>itsm / itil</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLOUD & DEVOPS -->
+  <section class="section" id="cloud-devops">
+    <div class="section-head">
+      <span class="section-tag">01</span>
+      <h2>Cloud &amp; DevOps</h2>
+    </div>
+    <p class="section-sub">Migration, optimisation et automatisation d'infrastructures.</p>
+    <div class="domain-grid">
+      <div class="card">
+        <div class="card-head"><h3>Infrastructure Docker &amp; Kubernetes</h3><span class="badge actif">Réalisé</span></div>
+        <p>Conception d'une infrastructure conteneurisée et déploiement d'une application web sur une architecture multi-nœuds.</p>
+        <div class="stack">
+          <span class="chip">Docker</span><span class="chip">Kubernetes</span><span class="chip">Linux</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-head"><h3>Migration &amp; optimisation Cloud</h3><span class="badge actif">Réalisé</span></div>
+        <p>Migration et optimisation d'infrastructures sur AWS — services Cloud et intégration.</p>
+        <div class="stack">
+          <span class="chip">AWS</span><span class="chip">Cloud</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WEB -->
+  <section class="section" id="web">
+    <div class="section-head">
+      <span class="section-tag">02</span>
+      <h2>Développement Web</h2>
+    </div>
+    <p class="section-sub">Sites et applications full-stack, du front au back.</p>
+    <div class="domain-grid">
+      <div class="card">
+        <div class="card-head"><h3>Site Prix des Carburants en France</h3><span class="badge actif">Sur GitHub</span></div>
+        <p>Application full-stack de suivi des prix des carburants, avec base de données intégrée et validation de données (XSD/DTD).</p>
+        <div class="stack">
+          <span class="chip">PHP</span><span class="chip">SQL</span><span class="chip">JavaScript</span><span class="chip">HTML/CSS</span>
+        </div>
+        <a class="card-link" href="https://github.com/kenza003/Site_Prix_des_carburants_en_France" target="_blank" rel="noopener">Voir le dépôt →</a>
+      </div>
+      <div class="card">
+        <div class="card-head"><h3>Sites responsives</h3><span class="badge actif">Réalisé</span></div>
+        <p>Conception de sites web responsives orientés expérience utilisateur et accessibilité mobile.</p>
+        <div class="stack">
+          <span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">Bootstrap</span><span class="chip">JavaScript</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-head"><h3>Application mobile &amp; desktop</h3><span class="badge encours">En veille techno</span></div>
+        <p>Développement d'applications avec Java et Spring.</p>
+        <div class="stack">
+          <span class="chip">Java</span><span class="chip">Spring</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- IOT -->
+  <section class="section" id="iot">
+    <div class="section-head">
+      <span class="section-tag">03</span>
+      <h2>IoT &amp; Systèmes embarqués</h2>
+    </div>
+    <p class="section-sub">Domaine de spécialisation du Master 2 — capteurs, protocoles et objets connectés.</p>
+    <div class="domain-grid">
+      <div class="card">
+        <div class="card-head"><h3>Horloge Micro:bit</h3><span class="badge actif">Sur GitHub</span></div>
+        <p>Horloge embarquée développée sur carte Micro:bit.</p>
+        <div class="stack"><span class="chip">C/C++</span><span class="chip">Embarqué</span></div>
+        <a class="card-link" href="https://github.com/kenza003/Horloge_microbit_IoT" target="_blank" rel="noopener">Voir le dépôt →</a>
+      </div>
+      <div class="card">
+        <div class="card-head"><h3>Souris Bluetooth IoT</h3><span class="badge actif">Sur GitHub</span></div>
+        <p>Périphérique connecté en Bluetooth, projet systèmes embarqués.</p>
+        <div class="stack"><span class="chip">C/C++</span><span class="chip">Bluetooth</span></div>
+        <a class="card-link" href="https://github.com/kenza003/Bluetooth_Mouse_IoT" target="_blank" rel="noopener">Voir le dépôt →</a>
+      </div>
+      <div class="card">
+        <div class="card-head"><h3>Système de chauffage piloté à distance</h3><span class="badge actif">Sur GitHub</span></div>
+        <p>Contrôle à distance d'un système de chauffage, capteurs et communication sans fil.</p>
+        <div class="stack"><span class="chip">ZigBee</span><span class="chip">C/C++</span></div>
+        <a class="card-link" href="https://github.com/kenza003/Remote_Controlled_Heating_System_Project" target="_blank" rel="noopener">Voir le dépôt →</a>
+      </div>
+      <div class="card">
+        <div class="card-head"><h3>Mesure de température</h3><span class="badge actif">Sur GitHub</span></div>
+        <p>Relevé et transmission de mesures de température via capteurs connectés.</p>
+        <div class="stack"><span class="chip">ZigBee</span><span class="chip">Capteurs</span></div>
+        <a class="card-link" href="https://github.com/kenza003/Temperature_Measurement_IoT" target="_blank" rel="noopener">Voir le dépôt →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CYBERSECURITE -->
+  <section class="section" id="cyber">
+    <div class="section-head">
+      <span class="section-tag">04</span>
+      <h2>Cybersécurité</h2>
+    </div>
+    <p class="section-sub">Conception sécurisée et audit de vulnérabilités.</p>
+    <div class="domain-grid">
+      <div class="card">
+        <div class="card-head"><h3>Conception sécurisée avec LDAP</h3><span class="badge actif">Réalisé</span></div>
+        <p>Intégration LDAP pour l'authentification, identification et correction de vulnérabilités (XSS, injections SQL).</p>
+        <div class="stack"><span class="chip">LDAP</span><span class="chip">Pentest</span><span class="chip">XSS</span><span class="chip">SQLi</span></div>
+      </div>
+      <div class="card">
+        <div class="card-head"><h3>Machine Learning — classification</h3><span class="badge actif">Réalisé</span></div>
+        <p>Classification et analyse de données appliquées à la détection de comportements anormaux.</p>
+        <div class="stack"><span class="chip">Machine Learning</span><span class="chip">Python</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ITSM -->
+  <section class="section" id="itsm">
+    <div class="section-head">
+      <span class="section-tag">05</span>
+      <h2>ITSM &amp; Conseil IT</h2>
+    </div>
+    <p class="section-sub">Expérience terrain en environnement client, alternance en cours.</p>
+    <div class="domain-grid">
+      <div class="card">
+        <div class="card-head"><h3>Conceptrice Informatique — Alternance</h3><span class="badge encours">En cours · 11/2025–07/2026</span></div>
+        <p>Conseil départemental, Métropole de Nice et autres clients. Accompagnement sur la gestion et l'amélioration des processus IT (ITSM/ITIL), analyse et suivi des incidents, gestion de bases MySQL et documentation technique.</p>
+        <div class="stack"><span class="chip">EasyVista</span><span class="chip">Mantis</span><span class="chip">ITIL</span><span class="chip">MySQL</span></div>
+      </div>
+      <div class="card">
+        <div class="card-head"><h3>Base de données &amp; traçabilité — Secteur aéroportuaire</h3><span class="badge actif">05/2023</span></div>
+        <p>Conception d'une base de données et d'une interface de gestion, mise en place d'un système de traçabilité des départs et arrivées d'avions.</p>
+        <div class="stack"><span class="chip">SQL</span><span class="chip">Interface de gestion</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMPETENCES -->
+  <section class="section" id="competences">
+    <div class="section-head">
+      <span class="section-tag">06</span>
+      <h2>Compétences techniques</h2>
+    </div>
+    <div class="skill-groups">
+      <div class="skill-group">
+        <h4>Cloud / DevOps</h4>
+        <div class="skill-chips"><span class="chip">AWS</span><span class="chip">Docker</span><span class="chip">Kubernetes</span><span class="chip">Git</span></div>
+      </div>
+      <div class="skill-group">
+        <h4>Développement</h4>
+        <div class="skill-chips"><span class="chip">Python</span><span class="chip">Java</span><span class="chip">C/C++</span><span class="chip">PHP</span><span class="chip">JavaScript</span></div>
+      </div>
+      <div class="skill-group">
+        <h4>Frameworks</h4>
+        <div class="skill-chips"><span class="chip">Django</span><span class="chip">Flutter</span><span class="chip">Laravel</span><span class="chip">Spring</span><span class="chip">Bootstrap</span></div>
+      </div>
+      <div class="skill-group">
+        <h4>Bases de données</h4>
+        <div class="skill-chips"><span class="chip">MySQL</span><span class="chip">NoSQL</span><span class="chip">ORM</span></div>
+      </div>
+      <div class="skill-group">
+        <h4>Réseaux &amp; Systèmes</h4>
+        <div class="skill-chips"><span class="chip">Linux</span><span class="chip">Windows</span><span class="chip">CCNA</span><span class="chip">Routage</span></div>
+      </div>
+      <div class="skill-group">
+        <h4>IoT / Embarqué</h4>
+        <div class="skill-chips"><span class="chip">ZigBee</span><span class="chip">Home Assistant</span><span class="chip">C/C++</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PARCOURS -->
+  <section class="section" id="parcours">
+    <div class="section-head">
+      <span class="section-tag">07</span>
+      <h2>Parcours universitaire</h2>
+    </div>
+    <div class="track-list">
+      <div class="track-item">
+        <h4>Master 2 Réseaux &amp; Télécommunications — parcours IoT</h4>
+        <div class="meta">Aix-Marseille Université · 2025–2026 · Obtenu</div>
+      </div>
+      <div class="track-item">
+        <h4>Master 1 Informatique — Traitement du Signal &amp; Images</h4>
+        <div class="meta">Aix-Marseille Université · 2024–2025 · Obtenu</div>
+      </div>
+      <div class="track-item">
+        <h4>Master 1 Informatique — Génie Logiciel</h4>
+        <div class="meta">Univ. Abderrahmane Mira, Béjaïa · 2023–2024 · Obtenu</div>
+      </div>
+      <div class="track-item">
+        <h4>Licence 3 Systèmes Informatiques</h4>
+        <div class="meta">Univ. Abderrahmane Mira, Béjaïa · 2019–2022 · Obtenu</div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap footer-inner">
+    <div>
+      <h3>Discutons.</h3>
+      <p>Marseille, France · Ouverte aux opportunités Cloud, DevOps &amp; Web</p>
+    </div>
+    <div class="footer-links">
+      <a href="mailto:naitatmane.kenza2003@gmail.com">Email</a>
+      <a href="https://github.com/kenza003" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
