@@ -3,376 +3,429 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kenza NAIT ATMANE — Conceptrice Informatique | Cloud &amp; Web</title>
+<title>Kenza NAIT ATMANE — Portfolio</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap');
 
   :root{
-    --violet:#5B5FEF;
-    --violet-deep:#3E3FC7;
+    --dark:#160F2E;
+    --dark2:#1E1642;
+    --violet:#6C5CE7;
+    --violet-soft:#8B7FF0;
     --coral:#FF6B5C;
     --mint:#3FCFB4;
     --ink:#181A2E;
-    --muted:#666B84;
-    --bg:#FFFFFF;
-    --bg-soft:#F6F5FF;
-    --line:#EAE9F7;
+    --muted-dark:#9B96BE;
+    --muted-light:#666B84;
+    --line-light:#ECEAF7;
+    --line-dark:rgba(255,255,255,0.14);
+    --white:#FFFFFF;
     --display:'Sora', sans-serif;
     --body:'Inter', sans-serif;
   }
   *{box-sizing:border-box; margin:0; padding:0;}
   html{scroll-behavior:smooth;}
-  body{
-    font-family:var(--body); color:var(--ink); background:var(--bg);
-    line-height:1.6; overflow-x:hidden;
-  }
-  a{color:inherit;}
-  .wrap{max-width:1100px; margin:0 auto; padding:0 28px;}
+  body{ font-family:var(--body); color:var(--ink); background:var(--white); line-height:1.6; overflow-x:hidden; }
+  a{color:inherit; text-decoration:none;}
   h1,h2,h3,h4{font-family:var(--display);}
+  .wrap{max-width:1140px; margin:0 auto; padding:0 32px;}
 
-  .reveal{ opacity:0; transform:translateY(24px); transition:opacity .7s ease, transform .7s ease; }
+  .reveal{ opacity:0; transform:translateY(22px); transition:opacity .7s ease, transform .7s ease; }
   .reveal.in{ opacity:1; transform:translateY(0); }
-  @media (prefers-reduced-motion:reduce){
-    .reveal{ opacity:1; transform:none; transition:none; }
+  @media (prefers-reduced-motion:reduce){ .reveal{opacity:1; transform:none; transition:none;} }
+
+  .underline-title{ display:inline-block; font-size:15px; font-weight:700; letter-spacing:.04em; text-transform:uppercase; text-decoration:underline; text-underline-offset:6px; text-decoration-color:var(--coral); margin-bottom:44px; }
+  .underline-title.on-dark{ color:var(--white); }
+  .underline-title.on-light{ color:var(--ink); }
+
+  /* ---------- NAV ---------- */
+  header.nav{ position:sticky; top:0; z-index:60; background:rgba(22,15,46,0.9); backdrop-filter:blur(8px); }
+  .nav-inner{ display:flex; align-items:center; justify-content:center; gap:34px; padding:20px 28px; max-width:1140px; margin:0 auto; }
+  nav.links a{ font-size:14px; font-weight:500; color:var(--muted-dark); transition:color .2s; }
+  nav.links a:hover{ color:var(--white); }
+  @media (max-width:760px){ .nav-inner{ gap:16px; padding:14px; } nav.links a{ font-size:12.5px; } }
+
+  /* ---------- HERO ---------- */
+  .hero{ position:relative; background:linear-gradient(180deg, var(--dark), var(--dark2)); min-height:78vh; display:flex; flex-direction:column; justify-content:center; overflow:hidden; }
+  .hero-inner{ position:relative; z-index:2; padding:70px 32px 0; max-width:1140px; margin:0 auto; width:100%; }
+  .hero h1{ color:var(--white); font-size:clamp(38px,7vw,74px); font-weight:800; letter-spacing:-0.01em; }
+  .hero h1 .last{ color:var(--violet-soft); }
+  .hero-sub{ color:var(--muted-dark); font-size:clamp(15px,2vw,19px); margin-top:16px; }
+  #wave-canvas{ position:absolute; bottom:0; left:0; width:100%; height:260px; z-index:1; }
+
+  /* ---------- ABOUT ---------- */
+  .section{ padding:100px 0; }
+  .about-grid{ display:grid; grid-template-columns:1.15fr 0.85fr; gap:60px; align-items:center; }
+  .about-grid p{ color:var(--muted-light); font-size:15.5px; margin-bottom:16px; }
+  .photo-frame{
+    aspect-ratio:1/1; border-radius:18px; transform:rotate(3deg);
+    overflow:hidden;
+    box-shadow:0 24px 50px rgba(108,92,231,0.28);
   }
+  @media (max-width:820px){ .about-grid{ grid-template-columns:1fr; } .photo-frame{ max-width:280px; margin:0 auto; } }
 
-  header.nav{
-    position:sticky; top:0; z-index:60;
-    background:rgba(255,255,255,0.85); backdrop-filter:blur(8px);
-    border-bottom:1px solid var(--line);
+  /* ---------- SKILLS ---------- */
+  .skills-section{ background:var(--dark); padding:100px 0; }
+  .skill-block{ margin-bottom:26px; }
+  .skill-block-label{ text-align:center; color:var(--white); font-weight:700; font-size:14px; text-transform:uppercase; letter-spacing:.05em; margin-bottom:16px; }
+  .skill-box{
+    border:1px solid rgba(108,92,231,0.4); border-radius:16px; padding:28px 24px;
+    display:flex; flex-wrap:wrap; justify-content:center; gap:14px;
+    box-shadow:0 0 0 1px rgba(108,92,231,0.06), 0 0 40px rgba(108,92,231,0.08) inset;
   }
-  .nav-inner{ display:flex; align-items:center; justify-content:space-between; padding:18px 28px; max-width:1100px; margin:0 auto; }
-  .logo{ font-family:var(--display); font-weight:800; font-size:19px; }
-  .logo span{ color:var(--violet); }
-  nav.links{ display:flex; gap:26px; font-size:14.5px; font-weight:500; }
-  nav.links a{ text-decoration:none; color:var(--muted); position:relative; }
-  nav.links a::after{
-    content:""; position:absolute; left:0; bottom:-4px; width:0; height:2px;
-    background:var(--coral); transition:width .2s ease;
+  .skill-chip{
+    display:flex; align-items:center; gap:8px; background:rgba(255,255,255,0.04);
+    border:1px solid rgba(255,255,255,0.08); padding:9px 16px; border-radius:100px;
+    font-size:13.5px; font-weight:600; color:var(--white);
   }
-  nav.links a:hover::after, nav.links a:focus-visible::after{ width:100%; }
-  nav.links a:hover{ color:var(--ink); }
-  .nav-cta{
-    background:var(--ink); color:#fff; text-decoration:none; font-weight:600;
-    font-size:14px; padding:10px 20px; border-radius:100px; transition:background .2s, transform .2s;
+  .skill-chip .sw{ width:9px; height:9px; border-radius:50%; flex-shrink:0; }
+
+  /* ---------- PROJECTS ---------- */
+  .project-row{ display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:center; margin-bottom:70px; }
+  .project-row.rev{ direction:rtl; }
+  .project-row.rev > *{ direction:ltr; }
+  .project-media{
+    aspect-ratio:16/10; border-radius:16px; display:flex; align-items:center; justify-content:center;
+    font-size:52px; box-shadow:0 20px 50px rgba(108,92,231,0.2);
   }
-  .nav-cta:hover{ background:var(--violet); transform:translateY(-2px); }
-  @media (max-width:780px){ nav.links{ display:none; } }
+  .project-card h3{ font-size:19px; margin-bottom:12px; }
+  .project-card p{ color:var(--muted-light); font-size:14.5px; margin-bottom:16px; }
+  .project-tags{ display:flex; flex-wrap:wrap; gap:14px; margin-bottom:14px; }
+  .project-tags a, .project-tags span{ font-size:13px; font-weight:600; font-style:italic; color:var(--violet); }
+  .project-link{ display:inline-flex; align-items:center; gap:6px; font-size:13.5px; font-weight:700; color:var(--coral); }
+  @media (max-width:760px){ .project-row, .project-row.rev{ grid-template-columns:1fr; direction:ltr; } }
 
-  .hero{ position:relative; padding:100px 0 90px; overflow:hidden; }
-  .blob{ position:absolute; border-radius:50%; filter:blur(60px); opacity:0.55; z-index:0; }
-  .blob-1{ width:420px; height:420px; background:var(--violet); top:-160px; right:-120px; }
-  .blob-2{ width:300px; height:300px; background:var(--coral); bottom:-120px; left:-100px; opacity:0.4; }
-  .blob-3{ width:200px; height:200px; background:var(--mint); top:220px; right:180px; opacity:0.35; }
-  @media (prefers-reduced-motion:no-preference){
-    .blob-1{ animation: drift1 14s ease-in-out infinite; }
-    .blob-2{ animation: drift2 16s ease-in-out infinite; }
-    .blob-3{ animation: drift1 11s ease-in-out infinite reverse; }
+  /* ---------- EXPERIENCES ---------- */
+  .exp-section{ background:var(--dark); padding:100px 0; }
+  .exp-box{
+    border:1px solid rgba(108,92,231,0.4); border-radius:16px; padding:34px 36px; margin-bottom:24px;
   }
-  @keyframes drift1{ 0%,100%{ transform:translate(0,0); } 50%{ transform:translate(-30px,25px); } }
-  @keyframes drift2{ 0%,100%{ transform:translate(0,0); } 50%{ transform:translate(25px,-20px); } }
+  .exp-box-head{ text-align:center; margin-bottom:18px; }
+  .exp-box-head h3{ color:var(--white); font-size:19px; margin-bottom:6px; }
+  .exp-box-head .exp-date{ color:var(--violet-soft); font-size:13px; font-weight:600; }
+  .exp-box p{ color:var(--muted-dark); font-size:14.5px; margin-bottom:10px; }
+  .exp-box ul{ list-style:none; }
+  .exp-box li{ color:var(--muted-dark); font-size:14.5px; padding-left:18px; position:relative; margin-bottom:6px; }
+  .exp-box li::before{ content:"–"; position:absolute; left:0; color:var(--coral); }
+  .exp-box .stack{ display:flex; flex-wrap:wrap; gap:8px; margin-top:14px; }
+  .exp-box .chip{ font-size:12px; font-weight:600; color:var(--white); background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12); padding:4px 12px; border-radius:100px; }
 
-  .hero-inner{ position:relative; z-index:1; }
-  .eyebrow{
-    display:inline-flex; align-items:center; gap:8px; font-size:13.5px; font-weight:600;
-    color:var(--violet-deep); background:var(--bg-soft); padding:7px 16px; border-radius:100px;
-    margin-bottom:26px;
+  /* ---------- VEILLE ---------- */
+  .veille-grid{ display:grid; grid-template-columns:1fr 340px; gap:60px; align-items:center; }
+  .veille-grid p{ color:var(--muted-light); font-size:15px; margin-bottom:14px; }
+  .veille-grid strong{ color:var(--ink); }
+  .orb{
+    aspect-ratio:1/1; border-radius:50%; position:relative;
+    background:radial-gradient(circle at 35% 30%, var(--violet-soft), var(--dark) 70%);
+    box-shadow:0 30px 60px rgba(108,92,231,0.25);
   }
-  .eyebrow .pip{ width:7px; height:7px; border-radius:50%; background:var(--mint); }
-  .hero h1{ font-size:clamp(38px,6.2vw,68px); font-weight:800; line-height:1.04; letter-spacing:-0.01em; }
-  .hero h1 .accent{ color:var(--violet); }
-  .hero-sub{ max-width:600px; margin-top:22px; font-size:17px; color:var(--muted); }
-  .hero-actions{ display:flex; flex-wrap:wrap; gap:14px; margin-top:34px; }
-  .btn-primary{
-    background:var(--violet); color:#fff; text-decoration:none; font-weight:600; font-size:15px;
-    padding:14px 28px; border-radius:100px; transition:transform .2s, box-shadow .2s;
-    box-shadow:0 10px 24px rgba(91,95,239,0.28);
+  .orb::after{
+    content:""; position:absolute; inset:14%; border-radius:50%; border:1px dashed rgba(108,92,231,0.4);
   }
-  .btn-primary:hover{ transform:translateY(-3px); box-shadow:0 14px 30px rgba(91,95,239,0.38); }
-  .btn-secondary{
-    border:1.5px solid var(--line); color:var(--ink); text-decoration:none; font-weight:600; font-size:15px;
-    padding:14px 28px; border-radius:100px; transition:border-color .2s, transform .2s;
+  @media (max-width:820px){ .veille-grid{ grid-template-columns:1fr; } .orb{ max-width:220px; margin:0 auto; } }
+
+  /* ---------- CONTACT ---------- */
+  .contact-section{ background:var(--dark); padding:100px 0 60px; text-align:center; }
+  .contact-section .underline-title{ margin-bottom:36px; }
+  .contact-card{
+    display:inline-flex; gap:26px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1);
+    border-radius:20px; padding:26px 40px;
   }
-  .btn-secondary:hover{ border-color:var(--violet); transform:translateY(-3px); }
-  .hero-tags{ display:flex; flex-wrap:wrap; gap:10px; margin-top:44px; }
-  .tag{ font-size:13px; font-weight:600; color:var(--ink); background:var(--bg-soft); padding:8px 16px; border-radius:100px; border:1px solid var(--line); }
-
-  .section{ padding:90px 0; }
-  .section-label{ font-size:13.5px; font-weight:700; color:var(--coral); text-transform:uppercase; letter-spacing:.08em; margin-bottom:12px; }
-  .section h2{ font-size:clamp(26px,4vw,36px); font-weight:800; letter-spacing:-0.01em; margin-bottom:18px; }
-  .section-sub{ color:var(--muted); font-size:16px; max-width:560px; margin-bottom:48px; }
-
-  .about-grid{ display:grid; grid-template-columns:1.1fr 0.9fr; gap:60px; align-items:start; }
-  .about-grid p{ color:var(--muted); font-size:16px; margin-bottom:16px; }
-  .about-card{ background:var(--bg-soft); border-radius:20px; padding:28px; }
-  .about-card h4{ font-size:14px; text-transform:uppercase; letter-spacing:.05em; color:var(--violet-deep); margin-bottom:14px; }
-  .about-list{ list-style:none; display:flex; flex-direction:column; gap:12px; }
-  .about-list li{ display:flex; gap:10px; font-size:14.5px; color:var(--ink); }
-  .about-list li::before{ content:"✦"; color:var(--coral); }
-  @media (max-width:820px){ .about-grid{ grid-template-columns:1fr; } }
-
-  .skills-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:36px 48px; }
-  .skill-cat h4{ font-size:15px; margin-bottom:18px; }
-  .skill-row{ margin-bottom:16px; }
-  .skill-row-top{ display:flex; justify-content:space-between; font-size:13.5px; margin-bottom:6px; font-weight:500; }
-  .skill-track{ height:7px; background:var(--line); border-radius:10px; overflow:hidden; }
-  .skill-fill{ height:100%; border-radius:10px; width:0%; background:linear-gradient(90deg, var(--violet), var(--coral)); transition:width 1.1s cubic-bezier(.22,1,.36,1); }
-
-  .project-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:22px; }
-  .project-card{ background:var(--bg); border:1px solid var(--line); border-radius:18px; padding:26px; transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease; }
-  .project-card:hover{ transform:translateY(-6px); box-shadow:0 20px 40px rgba(24,26,46,0.08); border-color:transparent; }
-  .project-top{ display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; }
-  .project-dot{ width:38px; height:38px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:17px; }
-  .project-card h3{ font-size:17px; margin-top:14px; margin-bottom:8px; }
-  .project-card p{ font-size:14px; color:var(--muted); margin-bottom:16px; }
-  .stack{ display:flex; flex-wrap:wrap; gap:6px; margin-bottom:16px; }
-  .chip{ font-size:11.5px; font-weight:600; background:var(--bg-soft); color:var(--violet-deep); padding:4px 10px; border-radius:100px; }
-  .project-link{ font-size:13.5px; font-weight:600; color:var(--violet); text-decoration:none; }
-  .project-link:hover{ color:var(--coral); }
-
-  .timeline{ display:flex; flex-direction:column; gap:0; }
-  .tl-item{ display:grid; grid-template-columns:140px 24px 1fr; gap:0; padding:22px 0; border-bottom:1px solid var(--line); }
-  .tl-item:last-child{ border-bottom:none; }
-  .tl-date{ font-size:13px; font-weight:700; color:var(--violet-deep); }
-  .tl-dot-col{ display:flex; justify-content:center; }
-  .tl-dot{ width:11px; height:11px; border-radius:50%; background:var(--coral); margin-top:4px; }
-  .tl-item h4{ font-size:16px; margin-bottom:4px; }
-  .tl-item p{ font-size:13.5px; color:var(--muted); }
-  @media (max-width:600px){ .tl-item{ grid-template-columns:20px 1fr; } .tl-date{ display:none; } }
-
-  .contact-section{ background:var(--ink); color:#fff; border-radius:28px; padding:64px 48px; margin:0 28px; position:relative; overflow:hidden; }
-  .contact-section::before{ content:""; position:absolute; width:380px; height:380px; border-radius:50%; background:var(--violet); filter:blur(90px); opacity:0.5; top:-140px; right:-100px; }
-  .contact-inner{ position:relative; max-width:1100px; margin:0 auto; text-align:center; }
-  .contact-section h2{ color:#fff; font-size:clamp(28px,4.5vw,42px); margin-bottom:16px; }
-  .contact-section p{ color:#C6C8DE; max-width:480px; margin:0 auto 34px; font-size:16px; }
-  .contact-actions{ display:flex; flex-wrap:wrap; justify-content:center; gap:16px; }
-  .btn-light{ background:#fff; color:var(--ink); text-decoration:none; font-weight:700; font-size:15px; padding:15px 30px; border-radius:100px; transition:transform .2s; }
-  .btn-light:hover{ transform:translateY(-3px); }
-  .btn-outline-light{ border:1.5px solid rgba(255,255,255,0.35); color:#fff; text-decoration:none; font-weight:600; font-size:15px; padding:15px 30px; border-radius:100px; transition:border-color .2s, transform .2s; }
-  .btn-outline-light:hover{ border-color:#fff; transform:translateY(-3px); }
-
-  footer{ text-align:center; padding:36px 0; color:var(--muted); font-size:13.5px; }
+  .contact-icon{ display:flex; flex-direction:column; align-items:center; gap:10px; }
+  .icon-circle{
+    width:52px; height:52px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+    background:var(--white); font-size:20px; transition:transform .2s;
+  }
+  .contact-icon:hover .icon-circle{ transform:translateY(-4px); }
+  .contact-icon span{ color:var(--muted-dark); font-size:12.5px; font-weight:600; }
+  footer{ background:var(--dark); text-align:center; padding:26px 0; border-top:1px solid rgba(255,255,255,0.08); }
+  footer p{ color:var(--muted-dark); font-size:12.5px; margin-bottom:4px; }
 </style>
 </head>
 <body>
 
 <header class="nav">
   <div class="nav-inner">
-    <div class="logo">Kenza<span>.</span></div>
-    <nav class="links">
+    <nav class="links" style="display:flex; gap:30px; flex-wrap:wrap; justify-content:center;">
       <a href="#about">À propos</a>
       <a href="#skills">Compétences</a>
       <a href="#projects">Projets</a>
-      <a href="#parcours">Parcours</a>
+      <a href="#experiences">Expériences</a>
+      <a href="#veille">Veille</a>
+      <a href="#contact">Contact</a>
     </nav>
-    <a class="nav-cta" href="#contact">Me contacter</a>
   </div>
 </header>
 
-<main>
-  <section class="hero">
-    <div class="blob blob-1"></div>
-    <div class="blob blob-2"></div>
-    <div class="blob blob-3"></div>
-    <div class="wrap hero-inner">
-      <div class="eyebrow"><span class="pip"></span> Ouverte aux opportunités · Marseille, France</div>
-      <h1>Salut, je suis Kenza —<br>je conçois des solutions <span class="accent">Cloud &amp; Web</span>.</h1>
-      <p class="hero-sub">
-        Conceptrice informatique curieuse et autonome, je passe du cadrage au déploiement :
-        infrastructures Cloud, automatisation DevOps, applications web et objets connectés.
-      </p>
-      <div class="hero-actions">
-        <a class="btn-primary" href="#projects">Voir mes projets</a>
-        <a class="btn-secondary" href="mailto:naitatmane.kenza2003@gmail.com">Me contacter</a>
-      </div>
-      <div class="hero-tags">
-        <span class="tag">☁️ Cloud &amp; DevOps</span>
-        <span class="tag">💻 Développement Web</span>
-        <span class="tag">📡 IoT &amp; Embarqué</span>
-        <span class="tag">🔒 Cybersécurité</span>
-        <span class="tag">🛠️ ITSM</span>
-      </div>
-    </div>
-  </section>
+<section class="hero">
+  <div class="hero-inner">
+    <h1>Kenza <span class="last">NAIT ATMANE</span></h1>
+    <p class="hero-sub">Conceptrice Informatique — Cloud &amp; Web</p>
+  </div>
+  <canvas id="wave-canvas"></canvas>
+</section>
 
-  <section class="section" id="about">
-    <div class="wrap">
-      <div class="about-grid">
-        <div class="reveal">
-          <div class="section-label">À propos</div>
-          <h2>Une approche de bout en bout</h2>
-          <p>Je conçois et déploie des solutions informatiques complètes : développement web et logiciel,
-          migration et optimisation d'infrastructures Cloud, automatisation DevOps, réseaux et cybersécurité.</p>
-          <p>Curieuse et autonome, j'aime évoluer dans des environnements agiles à taille humaine, où je peux
-          mettre cette polyvalence au service de projets clients concrets — du cadrage jusqu'au déploiement.</p>
-        </div>
-        <div class="about-card reveal">
-          <h4>En un coup d'œil</h4>
-          <ul class="about-list">
-            <li>Conceptrice Informatique en alternance — ITSM/ITIL, gestion des incidents</li>
-            <li>Projets Cloud : Docker, Kubernetes, AWS</li>
-            <li>Applications web full-stack &amp; bases de données</li>
-            <li>Projets IoT / embarqué : ZigBee, C/C++, Micro:bit</li>
-            <li>Français courant · Anglais courant · Permis B</li>
-          </ul>
-        </div>
+<section class="section" id="about">
+  <div class="wrap">
+    <span class="underline-title on-light">À propos.</span>
+    <div class="about-grid">
+      <div class="reveal">
+        <p>Bonjour et bienvenue sur mon portfolio.</p>
+        <p>Je m'appelle Kenza NAIT ATMANE, je suis conceptrice informatique basée à Marseille, titulaire d'un
+        Master 2 Réseaux &amp; Télécommunications.</p>
+        <p>Passionnée par les infrastructures et les systèmes qui les font tourner, je conçois et déploie des
+        solutions de bout en bout : développement web et logiciel, migration et optimisation d'infrastructures
+        Cloud, automatisation DevOps, réseaux et cybersécurité.</p>
+        <p>Curieuse et autonome, j'aime évoluer dans des environnements agiles à taille humaine, où je peux mettre
+        cette polyvalence au service de projets clients concrets, du cadrage jusqu'au déploiement.</p>
+        <p>Si vous souhaitez en savoir plus sur mes compétences et mes projets, ou simplement me contacter,
+        n'hésitez pas à explorer ce site.</p>
+        <p>Bonne lecture et à bientôt.</p>
+      </div>
+      <div class="reveal photo-frame">
+        <img src="assets/kenza_photo_square.jpg" alt="Kenza NAIT ATMANE" style="width:100%; height:100%; object-fit:cover; border-radius:18px;">
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="section" id="skills" style="background:var(--bg-soft);">
-    <div class="wrap">
-      <div class="section-label reveal">Compétences</div>
-      <h2 class="reveal">Ce que je maîtrise</h2>
-      <p class="section-sub reveal">Une base technique large, du réseau au déploiement en production.</p>
-      <div class="skills-grid">
-        <div class="skill-cat reveal">
-          <h4>Cloud &amp; DevOps</h4>
-          <div class="skill-row"><div class="skill-row-top"><span>AWS</span><span>75%</span></div><div class="skill-track"><div class="skill-fill" data-w="75"></div></div></div>
-          <div class="skill-row"><div class="skill-row-top"><span>Docker / Kubernetes</span><span>80%</span></div><div class="skill-track"><div class="skill-fill" data-w="80"></div></div></div>
-          <div class="skill-row"><div class="skill-row-top"><span>Git</span><span>85%</span></div><div class="skill-track"><div class="skill-fill" data-w="85"></div></div></div>
-        </div>
-        <div class="skill-cat reveal">
-          <h4>Développement</h4>
-          <div class="skill-row"><div class="skill-row-top"><span>PHP / JavaScript</span><span>80%</span></div><div class="skill-track"><div class="skill-fill" data-w="80"></div></div></div>
-          <div class="skill-row"><div class="skill-row-top"><span>Python / Java</span><span>75%</span></div><div class="skill-track"><div class="skill-fill" data-w="75"></div></div></div>
-          <div class="skill-row"><div class="skill-row-top"><span>MySQL / NoSQL</span><span>80%</span></div><div class="skill-track"><div class="skill-fill" data-w="80"></div></div></div>
-        </div>
-        <div class="skill-cat reveal">
-          <h4>Réseaux &amp; Sécurité</h4>
-          <div class="skill-row"><div class="skill-row-top"><span>Linux / CCNA</span><span>75%</span></div><div class="skill-track"><div class="skill-fill" data-w="75"></div></div></div>
-          <div class="skill-row"><div class="skill-row-top"><span>Pentest / XSS / SQLi</span><span>70%</span></div><div class="skill-track"><div class="skill-fill" data-w="70"></div></div></div>
-          <div class="skill-row"><div class="skill-row-top"><span>IoT / ZigBee</span><span>70%</span></div><div class="skill-track"><div class="skill-fill" data-w="70"></div></div></div>
-        </div>
+<section class="skills-section" id="skills">
+  <div class="wrap">
+    <span class="underline-title on-dark">Mes compétences.</span>
+
+    <div class="skill-block">
+      <div class="skill-block-label">Cloud &amp; DevOps</div>
+      <div class="skill-box">
+        <span class="skill-chip"><span class="sw" style="background:var(--violet-soft)"></span>AWS</span>
+        <span class="skill-chip"><span class="sw" style="background:var(--violet-soft)"></span>Docker</span>
+        <span class="skill-chip"><span class="sw" style="background:var(--violet-soft)"></span>Kubernetes</span>
+        <span class="skill-chip"><span class="sw" style="background:var(--violet-soft)"></span>Git</span>
       </div>
     </div>
-  </section>
 
-  <section class="section" id="projects">
-    <div class="wrap">
-      <div class="section-label reveal">Projets</div>
-      <h2 class="reveal">Ce que j'ai construit</h2>
-      <p class="section-sub reveal">Une sélection de projets, du Cloud à l'IoT.</p>
-      <div class="project-grid">
-
-        <div class="project-card reveal">
-          <div class="project-top"><div class="project-dot" style="background:#EDEDFE;">☁️</div></div>
-          <h3>Infrastructure Docker &amp; Kubernetes</h3>
-          <p>Conception d'une infra conteneurisée et déploiement d'une app web multi-nœuds.</p>
-          <div class="stack"><span class="chip">Docker</span><span class="chip">Kubernetes</span><span class="chip">Linux</span></div>
-        </div>
-
-        <div class="project-card reveal">
-          <div class="project-top"><div class="project-dot" style="background:#FFEAE7;">⛽</div></div>
-          <h3>Prix des Carburants en France</h3>
-          <p>Application full-stack de suivi des prix carburants, base de données intégrée.</p>
-          <div class="stack"><span class="chip">PHP</span><span class="chip">SQL</span><span class="chip">JS</span></div>
-          <a class="project-link" href="https://github.com/kenza003/Site_Prix_des_carburants_en_France" target="_blank" rel="noopener">Voir sur GitHub →</a>
-        </div>
-
-        <div class="project-card reveal">
-          <div class="project-top"><div class="project-dot" style="background:#E6FBF6;">🔒</div></div>
-          <h3>Conception sécurisée avec LDAP</h3>
-          <p>Authentification LDAP, correction de vulnérabilités XSS et injections SQL.</p>
-          <div class="stack"><span class="chip">LDAP</span><span class="chip">Pentest</span></div>
-        </div>
-
-        <div class="project-card reveal">
-          <div class="project-top"><div class="project-dot" style="background:#FFEAE7;">🏠</div></div>
-          <h3>Chauffage piloté à distance</h3>
-          <p>Contrôle à distance d'un système de chauffage via capteurs connectés.</p>
-          <div class="stack"><span class="chip">ZigBee</span><span class="chip">C/C++</span></div>
-          <a class="project-link" href="https://github.com/kenza003/Remote_Controlled_Heating_System_Project" target="_blank" rel="noopener">Voir sur GitHub →</a>
-        </div>
-
-        <div class="project-card reveal">
-          <div class="project-top"><div class="project-dot" style="background:#EDEDFE;">🌡️</div></div>
-          <h3>Mesure de température IoT</h3>
-          <p>Relevé et transmission de mesures via capteurs connectés.</p>
-          <div class="stack"><span class="chip">ZigBee</span><span class="chip">Capteurs</span></div>
-          <a class="project-link" href="https://github.com/kenza003/Temperature_Measurement_IoT" target="_blank" rel="noopener">Voir sur GitHub →</a>
-        </div>
-
-        <div class="project-card reveal">
-          <div class="project-top"><div class="project-dot" style="background:#E6FBF6;">⏰</div></div>
-          <h3>Horloge Micro:bit</h3>
-          <p>Horloge embarquée développée sur carte Micro:bit.</p>
-          <div class="stack"><span class="chip">C/C++</span><span class="chip">Embarqué</span></div>
-          <a class="project-link" href="https://github.com/kenza003/Horloge_microbit_IoT" target="_blank" rel="noopener">Voir sur GitHub →</a>
-        </div>
-
+    <div class="skill-block">
+      <div class="skill-block-label">Développement</div>
+      <div class="skill-box">
+        <span class="skill-chip"><span class="sw" style="background:var(--coral)"></span>PHP</span>
+        <span class="skill-chip"><span class="sw" style="background:var(--coral)"></span>JavaScript</span>
+        <span class="skill-chip"><span class="sw" style="background:var(--coral)"></span>Python</span>
+        <span class="skill-chip"><span class="sw" style="background:var(--coral)"></span>Java</span>
+        <span class="skill-chip"><span class="sw" style="background:var(--coral)"></span>MySQL</span>
       </div>
     </div>
-  </section>
 
-  <section class="section" id="parcours" style="background:var(--bg-soft);">
-    <div class="wrap">
-      <div class="section-label reveal">Parcours</div>
-      <h2 class="reveal">Formation &amp; expérience</h2>
-      <div class="timeline reveal">
-        <div class="tl-item">
-          <div class="tl-date">2025 – 2026</div>
-          <div class="tl-dot-col"><div class="tl-dot"></div></div>
-          <div><h4>Conceptrice Informatique — Alternance</h4><p>Conseil départemental, Métropole de Nice et autres clients · ITSM/ITIL</p></div>
-        </div>
-        <div class="tl-item">
-          <div class="tl-date">2025 – 2026</div>
-          <div class="tl-dot-col"><div class="tl-dot"></div></div>
-          <div><h4>Master 2 — Aix-Marseille Université</h4><p>Obtenu</p></div>
-        </div>
-        <div class="tl-item">
-          <div class="tl-date">2024 – 2025</div>
-          <div class="tl-dot-col"><div class="tl-dot"></div></div>
-          <div><h4>Master 1 Informatique — Traitement du Signal &amp; Images</h4><p>Aix-Marseille Université · Obtenu</p></div>
-        </div>
-        <div class="tl-item">
-          <div class="tl-date">2023 – 2024</div>
-          <div class="tl-dot-col"><div class="tl-dot"></div></div>
-          <div><h4>Master 1 Informatique — Génie Logiciel</h4><p>Univ. Abderrahmane Mira, Béjaïa · Obtenu</p></div>
-        </div>
-        <div class="tl-item">
-          <div class="tl-date">2019 – 2022</div>
-          <div class="tl-dot-col"><div class="tl-dot"></div></div>
-          <div><h4>Licence 3 Systèmes Informatiques</h4><p>Univ. Abderrahmane Mira, Béjaïa · Obtenu</p></div>
-        </div>
+    <div class="skill-block">
+      <div class="skill-block-label">Réseaux &amp; Sécurité</div>
+      <div class="skill-box">
+        <span class="skill-chip"><span class="sw" style="background:var(--mint)"></span>Linux</span>
+        <span class="skill-chip"><span class="sw" style="background:var(--mint)"></span>CCNA</span>
+        <span class="skill-chip"><span class="sw" style="background:var(--mint)"></span>Pentest</span>
+        <span class="skill-chip"><span class="sw" style="background:var(--mint)"></span>LDAP</span>
       </div>
     </div>
-  </section>
 
-  <section class="section" id="contact">
-    <div class="contact-section reveal">
-      <div class="contact-inner">
-        <h2>Discutons de votre projet.</h2>
-        <p>Ouverte aux opportunités Cloud, DevOps &amp; Web à Marseille et alentours.</p>
-        <div class="contact-actions">
-          <a class="btn-light" href="mailto:naitatmane.kenza2003@gmail.com">naitatmane.kenza2003@gmail.com</a>
-          <a class="btn-outline-light" href="https://github.com/kenza003" target="_blank" rel="noopener">GitHub</a>
-        </div>
+    <div class="skill-block">
+      <div class="skill-block-label">IoT &amp; Embarqué</div>
+      <div class="skill-box">
+        <span class="skill-chip"><span class="sw" style="background:var(--violet-soft)"></span>ZigBee</span>
+        <span class="skill-chip"><span class="sw" style="background:var(--violet-soft)"></span>C/C++</span>
+        <span class="skill-chip"><span class="sw" style="background:var(--violet-soft)"></span>Home Assistant</span>
       </div>
     </div>
-  </section>
-</main>
+  </div>
+</section>
 
-<footer>© Kenza NAIT ATMANE — Marseille, France</footer>
+<section class="section" id="projects">
+  <div class="wrap">
+    <span class="underline-title on-light">Mes projets.</span>
+
+    <div class="project-row reveal">
+      <div class="project-media" style="background:linear-gradient(135deg,#EDEDFE,#D9D8FB);">⛽</div>
+      <div class="project-card">
+        <h3>Prix des Carburants en France • 2025</h3>
+        <p>Application full-stack de suivi des prix des carburants avec base de données intégrée et validation
+        de données (XSD/DTD).</p>
+        <div class="project-tags"><span>PHP</span><span>SQL</span><span>JavaScript</span></div>
+        <a class="project-link" href="https://github.com/kenza003/Site_Prix_des_carburants_en_France" target="_blank" rel="noopener">Voir sur GitHub →</a>
+      </div>
+    </div>
+
+    <div class="project-row rev reveal">
+      <div class="project-media" style="background:linear-gradient(135deg,#FFEAE7,#FFD9D3);">🏠</div>
+      <div class="project-card">
+        <h3>Chauffage piloté à distance • IoT</h3>
+        <p>Contrôle à distance d'un système de chauffage via capteurs connectés et communication sans fil.</p>
+        <div class="project-tags"><span>ZigBee</span><span>C/C++</span></div>
+        <a class="project-link" href="https://github.com/kenza003/Remote_Controlled_Heating_System_Project" target="_blank" rel="noopener">Voir sur GitHub →</a>
+      </div>
+    </div>
+
+    <div class="project-row reveal">
+      <div class="project-media" style="background:linear-gradient(135deg,#E6FBF6,#CFF3EA);">🌡️</div>
+      <div class="project-card">
+        <h3>Mesure de température • IoT</h3>
+        <p>Relevé et transmission de mesures de température via capteurs connectés.</p>
+        <div class="project-tags"><span>ZigBee</span><span>Capteurs</span></div>
+        <a class="project-link" href="https://github.com/kenza003/Temperature_Measurement_IoT" target="_blank" rel="noopener">Voir sur GitHub →</a>
+      </div>
+    </div>
+
+    <div class="project-row rev reveal">
+      <div class="project-media" style="background:linear-gradient(135deg,#EDEDFE,#D9D8FB);">☁️</div>
+      <div class="project-card">
+        <h3>Infrastructure Docker &amp; Kubernetes</h3>
+        <p>Conception d'une infrastructure conteneurisée et déploiement d'une application web sur une architecture
+        multi-nœuds.</p>
+        <div class="project-tags"><span>Docker</span><span>Kubernetes</span><span>Linux</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="exp-section" id="experiences">
+  <div class="wrap">
+    <span class="underline-title on-dark">Mes expériences.</span>
+
+    <div class="exp-box reveal">
+      <div class="exp-box-head">
+        <h3>Conceptrice Informatique en alternance</h3>
+        <div class="exp-date">11/2025 au 07/2026 — Conseil départemental, Métropole de Nice et autres clients</div>
+      </div>
+      <p>Accompagnement de plusieurs clients sur la gestion et l'amélioration de leurs processus IT (ITSM/ITIL),
+      avec une posture de conseil et de proximité client.</p>
+      <ul>
+        <li>Analyse et suivi des incidents et des demandes, en collaboration avec les équipes techniques</li>
+        <li>Gestion de bases de données MySQL et réalisation de documentation technique</li>
+        <li>Utilisation quotidienne d'EasyVista Service Manager et de Mantis</li>
+      </ul>
+      <div class="stack"><span class="chip">EasyVista</span><span class="chip">Mantis</span><span class="chip">ITIL</span><span class="chip">MySQL</span></div>
+    </div>
+
+    <div class="exp-box reveal">
+      <div class="exp-box-head">
+        <h3>Stage — Conception d'une base de données &amp; application</h3>
+        <div class="exp-date">05/2023 — Secteur aéroportuaire, Béjaïa</div>
+      </div>
+      <p>Conception d'une base de données et d'une interface utilisateur de gestion pour le suivi des opérations.</p>
+      <ul>
+        <li>Mise en place d'un système de traçabilité des départs et arrivées d'avions</li>
+        <li>Conception de l'interface utilisateur et de la structure de la base de données</li>
+      </ul>
+      <div class="stack"><span class="chip">SQL</span><span class="chip">Interface de gestion</span></div>
+    </div>
+
+    <div class="exp-box reveal">
+      <div class="exp-box-head"><h3>Formation</h3></div>
+      <ul>
+        <li>Master 2 Réseaux &amp; Télécommunications — parcours IoT, Aix-Marseille Université · 2025–2026 (Obtenu)</li>
+        <li>Master 1 Informatique — Traitement du Signal &amp; Images, Aix-Marseille Université · 2024–2025 (Obtenu)</li>
+        <li>Master 1 Informatique — Génie Logiciel, Univ. Abderrahmane Mira, Béjaïa · 2023–2024 (Obtenu)</li>
+        <li>Licence 3 Systèmes Informatiques, Univ. Abderrahmane Mira, Béjaïa · 2019–2022 (Obtenu)</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="veille">
+  <div class="wrap">
+    <span class="underline-title on-light">Veilles.</span>
+    <div class="veille-grid reveal">
+      <div>
+        <p><strong>Veille technologique — Cloud &amp; DevOps.</strong> Je suis les évolutions des pratiques Cloud
+        et DevOps : infrastructures conteneurisées, automatisation des déploiements, gestion d'infrastructure as
+        code. C'est un domaine qui évolue vite — nouveaux services managés, bonnes pratiques de sécurisation des
+        architectures, optimisation des coûts.</p>
+        <p>Sources suivies : documentation officielle AWS, blogs techniques Docker/Kubernetes, chaînes spécialisées
+        (NetworkChuck), KodeKloud.</p>
+        <p><strong>Veille cybersécurité &amp; RGPD.</strong> La sécurisation des applications et la protection des
+        données sont des enjeux permanents. Je suis les actualités sur les failles récentes, les bonnes pratiques
+        d'authentification et la réglementation (RGPD).</p>
+        <p>Sources suivies : CNIL, ANSSI, actualités sécurité applicative (OWASP).</p>
+      </div>
+      <div class="orb"></div>
+    </div>
+  </div>
+</section>
+
+<section class="contact-section" id="contact">
+  <div class="wrap">
+    <span class="underline-title on-dark">Me contacter.</span>
+    <div class="contact-card">
+      <a class="contact-icon" href="https://github.com/kenza003" target="_blank" rel="noopener">
+        <div class="icon-circle"><img src="assets/github_icone.png" alt="GitHub" style="width:26px; height:26px;"></div>
+        <span>Github</span>
+      </a>
+      <a class="contact-icon" href="https://www.linkedin.com/in/kenza-naitatmane" target="_blank" rel="noopener">
+        <div class="icon-circle"><img src="assets/linkdin_icone.png" alt="LinkedIn" style="width:26px; height:26px;"></div>
+        <span>LinkedIn</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Site développé par Kenza NAIT ATMANE avec HTML, CSS et JavaScript.</p>
+  <p>© Kenza NAIT ATMANE 2026</p>
+</footer>
 
 <script>
+  // reveal on scroll
   const revealEls = document.querySelectorAll('.reveal');
-
   const io = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-      if(entry.isIntersecting){
-        entry.target.classList.add('in');
-        if(entry.target.classList.contains('skill-cat')){
-          entry.target.querySelectorAll('.skill-fill').forEach(f => {
-            f.style.width = f.dataset.w + '%';
-          });
-        }
-        io.unobserve(entry.target);
-      }
+      if(entry.isIntersecting){ entry.target.classList.add('in'); io.unobserve(entry.target); }
     });
-  }, { threshold: 0.15 });
-
+  }, { threshold: 0.12 });
   revealEls.forEach(el => io.observe(el));
+
+  // particle wave in hero
+  const canvas = document.getElementById('wave-canvas');
+  const ctx = canvas.getContext('2d');
+  let w, h, dots = [];
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function resize(){
+    w = canvas.width = canvas.offsetWidth * devicePixelRatio;
+    h = canvas.height = canvas.offsetHeight * devicePixelRatio;
+    buildDots();
+  }
+
+  function buildDots(){
+    dots = [];
+    const cols = 60, rows = 10;
+    for(let i=0;i<cols;i++){
+      for(let j=0;j<rows;j++){
+        dots.push({
+          x: (i/cols) * w,
+          baseY: (j/rows) * h,
+          j, i
+        });
+      }
+    }
+  }
+
+  let t = 0;
+  function draw(){
+    ctx.clearRect(0,0,w,h);
+    dots.forEach(d => {
+      const offset = Math.sin((d.i*0.25) + t + d.j*0.4) * (h*0.12) * (1 - d.j/12);
+      const y = d.baseY*0.35 + offset + h*0.15;
+      const alpha = 0.15 + (d.j/10)*0.55;
+      const size = 1 + (d.j/10)*2.2;
+      ctx.fillStyle = `rgba(139,127,240,${alpha})`;
+      ctx.beginPath();
+      ctx.arc(d.x, y, size, 0, Math.PI*2);
+      ctx.fill();
+    });
+    if(!reduceMotion){
+      t += 0.012;
+      requestAnimationFrame(draw);
+    }
+  }
+
+  window.addEventListener('resize', resize);
+  resize();
+  draw();
 </script>
 
 </body>
